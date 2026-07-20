@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Update | 20 Jul 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #f1f5f9;
+      --w:     #ffffff;
+      --f:     #f8fafc;
+      --bdr:   #e2e8f0;
+      --bdr2:  #cbd5e1;
+      --txt:   #0f172a;
+      --soft:  #475569;
+      --muted: #94a3b8;
+      --cel:   #0891b2;
+      --cel-l: #e0f2fe;
+      --grn:   #16a34a;
+      --grn-l: #dcfce7;
+      --amb:   #d97706;
+      --amb-l: #fef3c7;
+      --pur:   #7c3aed;
+      --pur-l: #ede9fe;
+      --red:   #dc2626;
+    }
+
+    html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--txt); overflow-x: hidden; }
+
+    .slide {
+      min-height: 100vh; scroll-snap-align: start;
+      display: flex; flex-direction: column;
+      padding: 48px 72px 40px;
+      position: relative; overflow: hidden;
+      background: var(--w);
+    }
+    .slide.alt { background: var(--f); }
+
+    .sn { position: absolute; bottom: 22px; right: 56px; font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+
+    .tb { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; padding-bottom: 16px; border-bottom: 2px solid var(--bdr); }
+    .tb-brand { font-size: 11px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--cel); }
+    .tb-date  { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    .lbl { font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--cel); margin-bottom: 6px; }
+    .h1  { font-size: 38px; font-weight: 900; letter-spacing: -1px; color: var(--txt); margin-bottom: 28px; line-height: 1.1; }
+
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 5px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+    .b-won   { background: var(--grn-l); color: var(--grn); }
+    .b-disc  { background: var(--pur-l); color: var(--pur); }
+    .b-prop  { background: var(--amb-l); color: var(--amb); }
+    .b-pilot { background: var(--cel-l); color: var(--cel); }
+    .b-none  { background: #f1f5f9; color: var(--muted); border: 1px solid var(--bdr); }
+    .b-intro { background: #f1f5f9; color: #64748b; border: 1px solid var(--bdr); }
+    .b-demo  { background: var(--pur-l); color: var(--pur); }
+    .b-close { background: var(--amb-l); color: var(--amb); }
+    .b-dec   { background: var(--cel-l); color: var(--cel); }
+    .b-neg   { background: #fef3c7; color: #92400e; }
+    .b-proc  { background: #dbeafe; color: #1e40af; }
+    .b-lost  { background: #fee2e2; color: #991b1b; }
+    .b-integ { background: #ede9fe; color: #6d28d9; }
+    .b-cliente { background: var(--grn-l); color: var(--grn); }
+
+    .dpos { color: var(--grn); font-size: 10px; font-weight: 800; margin-left: 3px; }
+    .dneg { color: var(--red); font-size: 10px; font-weight: 800; margin-left: 3px; }
+
+
+    /* ══════════ S1: PORTADA ══════════ */
+    #s1 { justify-content: center; background: var(--w); }
+    #s1::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, #f0fdfe 0%, #ffffff 50%, #fef9f0 100%);
+      pointer-events: none;
+    }
+    .p-wrap { position: relative; z-index: 1; max-width: 860px; }
+    .p-ey { font-size: 12px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--cel); margin-bottom: 20px; }
+    .p-tt { font-size: 88px; font-weight: 900; line-height: .92; letter-spacing: -4px; color: var(--txt); margin-bottom: 22px; }
+    .p-tt em { font-style: normal; color: var(--cel); border-bottom: 6px solid var(--cel-l); padding-bottom: 4px; }
+    .p-sub { font-size: 20px; font-weight: 400; color: var(--soft); margin-bottom: 56px; }
+    .p-meta { display: flex; gap: 48px; padding-top: 32px; border-top: 2px solid var(--bdr); }
+    .pm { display: flex; flex-direction: column; gap: 5px; }
+    .pm-l { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+    .pm-v { font-size: 16px; font-weight: 700; color: var(--txt); }
+
+
+    /* ══════════ S2: EMBUDO ══════════ */
+    #s2 { background: var(--f); }
+    #s2 .h1 { margin-bottom: 16px; }
+
+    .emb-wrap { border-radius: 12px; overflow: hidden; border: 1px solid var(--bdr2); margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .emb-table { width: 100%; border-collapse: collapse; }
+    .emb-table thead tr { background: #0c2340; }
+    .emb-table th { padding: 11px 14px; text-align: center; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #7dd3fc; }
+    .emb-table th:first-child { text-align: left; color: #ffffff; }
+    .emb-table td { padding: 8px 14px; text-align: center; border-top: 1px solid rgba(0,0,0,0.06); font-size: 15px; font-weight: 600; color: var(--txt); }
+    .emb-table td:first-child { text-align: left; font-weight: 700; }
+    .emb-table .pct { color: var(--muted); font-size: 13px; font-weight: 500; }
+
+    .r-bolsa  td { background: #fefce8; font-weight: 800; }
+    .r-bolsa  td:first-child { color: #92400e; }
+    .r-intro  td { background: #f0fdf4; }
+    .r-disc   td { background: #dcfce7; }
+    .r-prop   td { background: #bbf7d0; }
+    .r-neg    td { background: #86efac; color: #14532d; font-weight: 700; }
+    .r-pilotd td { background: #4ade80; color: #14532d; font-weight: 700; }
+    .r-proc   td { background: #bfdbfe; color: #1e3a8a; font-weight: 700; }
+    .r-pilot0 td { background: #f8fafc; color: var(--muted); font-size: 12px; }
+    .r-won    td { background: #14532d; color: #ffffff; font-weight: 800; font-size: 14px; }
+
+    .ins-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .ins-card { background: var(--w); border: 1px solid var(--bdr); border-left: 5px solid var(--cel); border-radius: 10px; padding: 16px 18px; }
+    .ins-card.ig { border-left-color: var(--grn); }
+    .ins-card.ia { border-left-color: var(--amb); }
+    .ins-card.ir { border-left-color: var(--red); }
+    .ins-ico { font-size: 22px; margin-bottom: 8px; }
+    .ins-txt { font-size: 15px; font-weight: 600; color: var(--txt); line-height: 1.5; }
+    .ins-txt b { color: var(--cel); }
+    .ins-card.ig .ins-txt b { color: var(--grn); }
+    .ins-card.ia .ins-txt b { color: var(--amb); }
+    .ins-card.ir .ins-txt b { color: var(--red); }
+
+
+    /* ══════════ S3: SESIONES ══════════ */
+    #s3 { background: var(--w); }
+    .sess-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .sc { background: var(--f); border: 1px solid var(--bdr); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; position: relative; overflow: hidden; }
+    .sc::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+    .sc.si::before  { background: #94a3b8; }
+    .sc.sd::before  { background: var(--pur); }
+    .sc.sp::before  { background: var(--amb); }
+    .sc.sdc::before { background: var(--cel); }
+    .sc.swon::before { background: var(--grn); }
+    .sc.slost::before { background: var(--red); }
+    .sc.sinteg::before { background: #6d28d9; }
+    .sc.sneg::before { background: #92400e; }
+    .sc-top  { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .sc-name { font-size: 14px; font-weight: 800; color: var(--txt); }
+    .sc-date { font-size: 11px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+    .sc-meta { display: flex; align-items: center; gap: 8px; }
+    .sc-flag { font-size: 14px; }
+    .sc-tk   { font-size: 12.5px; font-weight: 500; color: var(--soft); line-height: 1.5; }
+    .sc-nx   { font-size: 11.5px; font-weight: 700; color: var(--cel); display: flex; align-items: flex-start; gap: 5px; padding-top: 4px; border-top: 1px solid var(--bdr); }
+    .sc-nx::before { content: '→'; flex-shrink: 0; }
+    .sc-nx.won { color: var(--grn); }
+    .sc-nx.won::before { content: '✓'; }
+    .sc-nx.lost { color: var(--red); }
+    .sc-nx.lost::before { content: '✕'; }
+    .sc-nx.amb { color: var(--amb); }
+    .sc-nx.amb::before { content: '→'; }
+
+
+    /* ══════════ S4: PIPELINE FINANCIERO ══════════ */
+    #s4 { background: var(--f); }
+
+    .kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 24px; }
+    .kpi { background: var(--w); border: 1px solid var(--bdr); border-radius: 12px; padding: 24px 22px; position: relative; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: var(--cel); }
+    .kpi.kg::before { background: var(--grn); }
+    .kpi.ka::before { background: var(--amb); }
+    .kpi-l { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .kpi-v { font-size: 42px; font-weight: 900; letter-spacing: -1.5px; line-height: 1; margin-bottom: 6px; color: var(--txt); }
+    .kpi-v.vc { color: var(--cel); }
+    .kpi-v.vg { color: var(--grn); }
+    .kpi-v.va { color: var(--amb); }
+    .kpi-n { font-size: 12px; color: var(--soft); font-weight: 500; }
+
+    .pip-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .pip-wrap { border-radius: 10px; overflow: hidden; border: 1px solid var(--bdr2); margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .pip-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .pip-table thead tr { background: #0c2340; }
+    .pip-table th { padding: 8px 8px; text-align: center; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7dd3fc; white-space: nowrap; }
+    .pip-table th:first-child { text-align: left; padding-left: 14px; color: #ffffff; }
+    .pip-table td { padding: 8px 8px; text-align: center; border-top: 1px solid var(--bdr); font-size: 12px; font-weight: 600; color: var(--txt); }
+    .pip-table td:first-child { text-align: left; padding-left: 14px; font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--soft); }
+
+    .c-intro  { background: #f0fdf4; }
+    .c-disc   { background: #dcfce7; }
+    .c-prop   { background: #bbf7d0; }
+    .c-neg    { background: #86efac; color: #14532d !important; }
+    .c-pilotd { background: #4ade80; color: #14532d !important; }
+    .c-proc   { background: #bfdbfe; color: #1e3a8a !important; }
+    .c-won    { background: #14532d; color: #ffffff !important; font-weight: 800 !important; }
+    .r-pct td { color: var(--muted); font-size: 10px; font-weight: 500; border-top: none; }
+
+    .av-title { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .av-list  { display: flex; flex-direction: column; gap: 7px; }
+    .av-item  { display: flex; align-items: flex-start; gap: 12px; padding: 11px 16px; background: var(--w); border: 1px solid var(--bdr); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--soft); line-height: 1.5; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .av-item b { color: var(--txt); font-weight: 800; }
+    .av-item.won-item { border-color: #86efac; background: #f0fdf4; }
+    .av-item.won-item b { color: var(--grn); }
+    .av-item.new-item { border-color: #bfdbfe; background: #eff6ff; }
+    .av-item.new-item b { color: #1e40af; }
+    .av-dot  { width: 7px; height: 7px; border-radius: 50%; background: var(--cel); flex-shrink: 0; margin-top: 7px; }
+    .av-dot.g { background: var(--grn); }
+    .av-dot.b { background: #2563eb; }
+    .av-dot.a { background: var(--amb); }
+
+
+    /* ══════════ S5: STATUS DE DEALS ══════════ */
+    #s5 { background: var(--w); }
+
+    .deal-table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+    .deal-table th { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0 14px 6px; }
+    .deal-table th.tc { text-align: center; }
+    .deal-table td.tc { text-align: center; }
+    .deal-table td { padding: 11px 14px; background: var(--f); border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr); font-size: 13px; }
+    .deal-table td:first-child { border-left: 1px solid var(--bdr); border-radius: 8px 0 0 8px; }
+    .deal-table td:last-child  { border-right: 1px solid var(--bdr); border-radius: 0 8px 8px 0; }
+
+    .dn  { font-weight: 800; color: var(--txt); font-size: 14px; }
+    .df  { font-weight: 600; color: var(--muted); font-size: 11px; margin-top: 2px; }
+    .de  { font-weight: 700; color: var(--txt); font-size: 14px; }
+    .dr  { font-weight: 900; color: var(--cel); font-size: 15px; }
+    .dx  { font-weight: 500; color: var(--soft); font-size: 12px; line-height: 1.5; }
+    #s5 .badge { font-size: 10px; padding: 4px 10px; }
+    .row-won td  { background: #f0fdf4; border-color: #bbf7d0; }
+    .row-hot td  { background: #eff6ff; border-color: #bfdbfe; }
+    .row-lost td { background: #fef2f2; border-color: #fecaca; }
+    .fn { margin-top: 12px; font-size: 11px; color: var(--muted); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+
+<!-- ══════════ S1: PORTADA ══════════ -->
+<section class="slide" id="s1">
+  <div class="p-wrap">
+    <div class="p-ey">Picker Express · Commercial Update</div>
+    <div class="p-tt"><em>Weekly</em><br>Update</div>
+    <div class="p-sub">Pipeline &amp; Deals · Semana 14 – 20 Jul 2026</div>
+    <div class="p-meta">
+      <div class="pm"><span class="pm-l">Presentado por</span><span class="pm-v">Ricardo Astorga</span></div>
+      <div class="pm"><span class="pm-l">Para</span><span class="pm-v">JD</span></div>
+      <div class="pm"><span class="pm-l">Fecha</span><span class="pm-v">20 de Julio, 2026</span></div>
+      <div class="pm"><span class="pm-l">Sesiones esta semana</span><span class="pm-v">9 sesiones</span></div>
+      <div class="pm"><span class="pm-l">Deals activos</span><span class="pm-v">14 en pipeline</span></div>
+    </div>
+  </div>
+  <span class="sn">01 / 05</span>
+</section>
+
+
+<!-- ══════════ S2: EMBUDO COMERCIAL ══════════ -->
+<section class="slide alt" id="s2">
+  <div class="tb"><span class="tb-brand">Picker Express</span><span class="tb-date">Semana 14 – 20 Jul 2026</span></div>
+  <div class="lbl">Funnel Semanal</div>
+  <div class="h1">Embudo Comercial — Julio 2026</div>
+
+  <div class="emb-wrap">
+    <table class="emb-table">
+      <thead>
+        <tr>
+          <th style="width:26%;text-align:left">Embudo Comercial — Q2</th>
+          <th># Negocios</th><th>%</th>
+          <th># Envíos</th><th>%</th>
+          <th>$ Revenue</th><th>%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="r-bolsa">
+          <td>Bolsa Leads Prospección</td>
+          <td>73</td><td class="pct">83%</td>
+          <td>1.359.302</td><td class="pct">73%</td>
+          <td>$5.961.676</td><td class="pct">79%</td>
+        </tr>
+        <tr class="r-intro">
+          <td>Intro Meeting</td>
+          <td>1</td><td class="pct">1%</td>
+          <td>140.000</td><td class="pct">8%</td>
+          <td>$455.000</td><td class="pct">6%</td>
+        </tr>
+        <tr class="r-disc">
+          <td>Discovery</td>
+          <td>3</td><td class="pct">3%</td>
+          <td>47.400</td><td class="pct">3%</td>
+          <td>$128.300</td><td class="pct">2%</td>
+        </tr>
+        <tr class="r-prop">
+          <td>Proposal</td>
+          <td>6</td><td class="pct">7%</td>
+          <td>71.300</td><td class="pct">4%</td>
+          <td>$199.225</td><td class="pct">3%</td>
+        </tr>
+        <tr class="r-neg">
+          <td>Negotiation</td>
+          <td>4</td><td class="pct">5%</td>
+          <td>231.500</td><td class="pct">12%</td>
+          <td>$780.000</td><td class="pct">10%</td>
+        </tr>
+        <tr class="r-pilot0">
+          <td>Pilot Definition · Running · Results</td>
+          <td>0</td><td class="pct">0%</td>
+          <td>0</td><td class="pct">0%</td>
+          <td>$0</td><td class="pct">0%</td>
+        </tr>
+        <tr class="r-proc">
+          <td>Procurement</td>
+          <td>1</td><td class="pct">1%</td>
+          <td>11.000</td><td class="pct">1%</td>
+          <td>$35.750</td><td class="pct">0%</td>
+        </tr>
+        <tr class="r-won">
+          <td>WON</td>
+          <td>1</td><td>—</td>
+          <td>6.500</td><td>—</td>
+          <td>$21.125</td><td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ins-grid">
+    <div class="ins-card ig">
+      <div class="ins-ico">🏆</div>
+      <div class="ins-txt">Se suma <b>GNC a WON</b> — primera ganancia de la semana · bolsa de prospección crece con <b>+2 leads</b> nuevos</div>
+    </div>
+    <div class="ins-card">
+      <div class="ins-ico">🚀</div>
+      <div class="ins-txt">Se agregan a la bolsa <b>Oakberry CO (15k envíos), La Jugada de Leo CO (6.5k envíos) y Zirus Pizza CO</b></div>
+    </div>
+    <div class="ins-card ia">
+      <div class="ins-ico">🤝</div>
+      <div class="ins-txt">Clientes tipo 4 en proceso de avanzar · <b>tipo 0 se pasan a Víctor</b> para trabajar en paralelo</div>
+    </div>
+  </div>
+
+  <span class="sn">02 / 05</span>
+</section>
+
+
+<!-- ══════════ S3: SESIONES DE LA SEMANA ══════════ -->
+<section class="slide" id="s3">
+  <div class="tb"><span class="tb-brand">Picker Express</span><span class="tb-date">Semana 14 – 20 Jul 2026</span></div>
+  <div class="lbl">Actividad Comercial</div>
+  <div class="h1">9 Sesiones Realizadas esta Semana</div>
+
+  <div class="sess-grid">
+
+    <div class="sc sneg">
+      <div class="sc-top">
+        <span class="sc-name">Salvator's Pizza &amp; Pasta</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇨🇴</span><span class="badge b-neg">Revisión Contrato</span></div>
+      <div class="sc-tk">Sesión de revisión de detalles de contrato con William (CEO) y Guillermo (champion). Deal prácticamente cerrado — en espera del visto bueno final para firma y fecha de onboarding.</div>
+      <div class="sc-nx amb">Vobo final para firma y fecha de onboarding</div>
+    </div>
+
+    <div class="sc sp">
+      <div class="sc-top">
+        <span class="sc-name">Papa Johns &amp; El Corral</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇨🇴</span><span class="badge b-prop">Propuesta</span></div>
+      <div class="sc-tk">Sesión con Patricia Torres. Se suma la directora de Tech para conocer el proceso. Se revisa propuesta comercial — siguiente sesión más técnica, luego una financiera cuando revisen los números de ahorro.</div>
+      <div class="sc-nx">Sesión técnica · luego sesión financiera</div>
+    </div>
+
+    <div class="sc sp">
+      <div class="sc-top">
+        <span class="sc-name">Coopidrogas CO</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇨🇴</span><span class="badge b-prop">Propuesta</span></div>
+      <div class="sc-tk">Se presenta la propuesta comercial con Jhonathan Torres (Dir. Ecommerce). Avanzarán a otra sesión con el Director Comercial — al final la decisión la toman los socios.</div>
+      <div class="sc-nx">Sesión con Director Comercial · decisión de socios</div>
+    </div>
+
+    <div class="sc sdc">
+      <div class="sc-top">
+        <span class="sc-name">Encebollados CDL</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇪🇨</span><span class="badge b-pilot">Piloto</span></div>
+      <div class="sc-tk">Sesión de propuesta con Víctor Dueñas (dueño). Avanzan con un piloto — en espera de los siguientes pasos para arrancar la operación.</div>
+      <div class="sc-nx won">Piloto acordado · confirmando siguientes pasos</div>
+    </div>
+
+    <div class="sc sp">
+      <div class="sc-top">
+        <span class="sc-name">Cruz Verde CL &amp; Maicao</span>
+        <span class="sc-date">con JD</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇨🇱</span><span class="badge b-prop">Propuesta</span></div>
+      <div class="sc-tk">JD envía propuesta comercial. En espera de respuesta y de agendar la siguiente sesión con el equipo de Cruz Verde.</div>
+      <div class="sc-nx">Propuesta enviada · pendiente respuesta y siguiente sesión</div>
+    </div>
+
+    <div class="sc si">
+      <div class="sc-top">
+        <span class="sc-name">Tacos el Compayito</span>
+        <span class="sc-date">×2 sesiones</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🇲🇽</span><span class="badge b-intro">Intro Meeting</span></div>
+      <div class="sc-tk">Dos sesiones esta semana — la intro call fue por teléfono. Deal nuevo ingresado al pipeline como restaurante mexicano con potencial para canal propio.</div>
+      <div class="sc-nx">Intro completada · siguiente paso: demo</div>
+    </div>
+
+    <div class="sc sdc">
+      <div class="sc-top">
+        <span class="sc-name">Reorder</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🏷️</span><span class="badge b-cliente">Cliente Tipo 4</span></div>
+      <div class="sc-tk">Sesión con cliente tipo 4 activo. Se trabaja proceso de avance con este perfil de cuenta — en proceso de escalar o profundizar la relación comercial.</div>
+      <div class="sc-nx">En proceso de avanzar</div>
+    </div>
+
+    <div class="sc si">
+      <div class="sc-top">
+        <span class="sc-name">Dark Kitchens Hub</span>
+        <span class="sc-date">esta semana</span>
+      </div>
+      <div class="sc-meta"><span class="sc-flag">🏷️</span><span class="badge b-none">Tipo 0 → Víctor</span></div>
+      <div class="sc-tk">Sesión con cliente tipo 0. Se levanta el contexto y se transfiere a Víctor para trabajar en paralelo con este perfil de cuenta.</div>
+      <div class="sc-nx">Transferido a Víctor</div>
+    </div>
+
+  </div>
+
+  <span class="sn">03 / 05</span>
+</section>
+
+
+<!-- ══════════ S4: PIPELINE FINANCIERO ══════════ -->
+<section class="slide alt" id="s4">
+  <div class="tb"><span class="tb-brand">Picker Express</span><span class="tb-date">Semana 14 – 20 Jul 2026</span></div>
+  <div class="lbl">Impacto Financiero</div>
+  <div class="h1">Pipeline Financiero — Julio 2026</div>
+
+  <div class="kpi-row">
+    <div class="kpi kg">
+      <div class="kpi-l">Total Pipeline Deals</div>
+      <div class="kpi-v vg">14</div>
+      <div class="kpi-n">deals activos en el pipeline</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Total Pipeline Revenue</div>
+      <div class="kpi-v vc">$1.143.275</div>
+      <div class="kpi-n">revenue bruto total en pipeline</div>
+    </div>
+    <div class="kpi ka">
+      <div class="kpi-l">Average Ticket Size</div>
+      <div class="kpi-v va">$81.663</div>
+      <div class="kpi-n">revenue promedio por deal</div>
+    </div>
+  </div>
+
+  <div class="pip-title">Distribución por etapa del pipeline — Deals · Envíos · Revenue Bruto</div>
+  <div class="pip-wrap">
+    <table class="pip-table">
+      <thead>
+        <tr>
+          <th>Métrica</th>
+          <th class="c-intro">Intro Meeting</th>
+          <th class="c-disc">Discovery &amp; Demo</th>
+          <th class="c-prop">P&amp;L &amp; Proposal</th>
+          <th class="c-neg">Negotiation</th>
+          <th style="background:#e2e8f0;color:#64748b">Pilot Def.</th>
+          <th style="background:#e2e8f0;color:#64748b">Pilot Run.</th>
+          <th style="background:#e2e8f0;color:#64748b">Pilot Res.</th>
+          <th class="c-proc">Procurement &amp; Legal</th>
+          <th class="c-won">Won</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td># Enterprise</td>
+          <td class="c-intro">1</td>
+          <td class="c-disc">3<span class="dneg">-3</span></td>
+          <td class="c-prop">6<span class="dpos">+1</span></td>
+          <td class="c-neg">4</td>
+          <td style="color:var(--muted)">0</td>
+          <td style="color:var(--muted)">0</td>
+          <td style="color:var(--muted)">0</td>
+          <td class="c-proc">1</td>
+          <td class="c-won">12<span class="dpos">+1</span></td>
+        </tr>
+        <tr>
+          <td># Envíos</td>
+          <td class="c-intro">140.000</td>
+          <td class="c-disc">47.400</td>
+          <td class="c-prop">71.300</td>
+          <td class="c-neg">231.500</td>
+          <td style="color:var(--muted)">0</td>
+          <td style="color:var(--muted)">0</td>
+          <td style="color:var(--muted)">0</td>
+          <td class="c-proc">11.000</td>
+          <td class="c-won">58.975</td>
+        </tr>
+        <tr>
+          <td>$ Revenue</td>
+          <td class="c-intro">$455.000</td>
+          <td class="c-disc">$128.300</td>
+          <td class="c-prop">$199.225</td>
+          <td class="c-neg">$780.000</td>
+          <td style="color:var(--muted)">$0</td>
+          <td style="color:var(--muted)">$0</td>
+          <td style="color:var(--muted)">$0</td>
+          <td class="c-proc">$35.750</td>
+          <td class="c-won">$194.468</td>
+        </tr>
+        <tr class="r-pct">
+          <td>%</td>
+          <td class="c-intro">25%</td>
+          <td class="c-disc">7%</td>
+          <td class="c-prop">11%</td>
+          <td class="c-neg">44%</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td class="c-proc">2%</td>
+          <td class="c-won">11%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="av-title">Avances de la semana</div>
+  <div class="av-list">
+    <div class="av-item won-item"><div class="av-dot g"></div><div><b>GNC pasa a WON</b> (6.5k envíos &amp; $21.125) — primer deal cerrado de la semana</div></div>
+    <div class="av-item won-item"><div class="av-dot g"></div><div><b>Salvator's CO</b> (11k envíos &amp; US $36k) — revisión de contrato completada · en espera de vobo final para firma y onboarding</div></div>
+    <div class="av-item new-item"><div class="av-dot b"></div><div><b>Papa Johns &amp; El Corral CO</b> (34k envíos &amp; US $110.5k) — sesión realizada con directora de Tech · próxima sesión técnica y luego financiera</div></div>
+    <div class="av-item"><div class="av-dot"></div><div><b>Coopidrogas CO</b> (6k envíos) — propuesta presentada · avanza a sesión con Dir. Comercial · decisión final con socios</div></div>
+    <div class="av-item"><div class="av-dot a"></div><div><b>Droguerías 9192 CO</b> (18k envíos &amp; US $58.5k) — sesión pospuesta · han revisado con tech internamente y quieren avanzar</div></div>
+  </div>
+
+  <span class="sn">04 / 05</span>
+</section>
+
+
+<!-- ══════════ S5: STATUS DE DEALS ══════════ -->
+<section class="slide" id="s5">
+  <div class="tb"><span class="tb-brand">Picker Express</span><span class="tb-date">Semana 14 – 20 Jul 2026</span></div>
+  <div class="lbl">Tracker Semanal</div>
+  <div class="h1">Status de Deals — Ricardo</div>
+
+  <table class="deal-table">
+    <thead>
+      <tr>
+        <th>Deal</th>
+        <th>País</th>
+        <th class="tc">Env/mes</th>
+        <th>Etapa</th>
+        <th>Status esta semana</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr class="row-won">
+        <td><div class="dn">Salvator's Pizza &amp; Pasta</div></td>
+        <td><div class="df">🇨🇴 CO</div></td>
+        <td class="tc"><div class="dr">11k</div></td>
+        <td><span class="badge b-neg">Negociación</span></td>
+        <td><div class="dx">Revisión de contrato · en espera de vobo final para firma y fecha de onboarding</div></td>
+      </tr>
+
+      <tr>
+        <td><div class="dn">Droguerías 9192</div></td>
+        <td><div class="df">🇨🇴 CO</div></td>
+        <td class="tc"><div class="dr">18k</div></td>
+        <td><span class="badge b-pilot">Pilot Definition</span></td>
+        <td><div class="dx">Sesión pospuesta · revisaron con tech internamente · quieren avanzar</div></td>
+      </tr>
+
+      <tr class="row-hot">
+        <td><div class="dn">Papa Johns &amp; El Corral</div></td>
+        <td><div class="df">🇨🇴 CO</div></td>
+        <td class="tc"><div class="dr">34k</div></td>
+        <td><span class="badge b-prop">Proposal</span></td>
+        <td><div class="dx">Sesión realizada · se suma directora de Tech · próxima sesión técnica + financiera</div></td>
+      </tr>
+
+      <tr class="row-hot">
+        <td><div class="dn">Coopidrogas CO</div></td>
+        <td><div class="df">🇨🇴 CO</div></td>
+        <td class="tc"><div class="dr">6k</div></td>
+        <td><span class="badge b-prop">Proposal</span></td>
+        <td><div class="dx">Propuesta presentada · siguiente sesión con Dir. Comercial · decisión con socios</div></td>
+      </tr>
+
+      <tr>
+        <td><div class="dn">Cruz Verde CL &amp; Maicao</div></td>
+        <td><div class="df">🇨🇱 CL</div></td>
+        <td class="tc"><div class="dr">30k</div></td>
+        <td><span class="badge b-prop">Proposal</span></td>
+        <td><div class="dx">JD envió propuesta · en espera de respuesta y agendar siguiente sesión</div></td>
+      </tr>
+
+      <tr>
+        <td><div class="dn">Encebollados CDL</div></td>
+        <td><div class="df">🇪🇨 EC</div></td>
+        <td class="tc"><div class="dr">2k</div></td>
+        <td><span class="badge b-pilot">Piloto</span></td>
+        <td><div class="dx">Avanza con piloto · en espera de siguientes pasos para arrancar</div></td>
+      </tr>
+
+      <tr>
+        <td><div class="dn">Grupo Nikkori</div></td>
+        <td><div class="df">🇲🇽 MX</div></td>
+        <td class="tc"><div class="dr">400</div><div class="df" style="text-align:center;">40k plataformas</div></td>
+        <td><span class="badge b-demo">Demo</span></td>
+        <td><div class="dx">En espera de respuesta para avanzar</div></td>
+      </tr>
+
+      <tr class="row-lost">
+        <td><div class="dn">Arruta MX</div></td>
+        <td><div class="df">🇲🇽 MX</div></td>
+        <td class="tc"><div class="dr">2k</div></td>
+        <td><span class="badge b-lost">Lost</span></td>
+        <td><div class="dx">Se manda a lost por falta de respuesta — contrato estuvo enviado sin feedback</div></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="fn">* Revenue = MRR potencial estimado en USD · Pipeline calculado desde etapa Discovery en adelante · Arruta movido a lost esta semana</div>
+  <span class="sn">05 / 05</span>
+</section>
+
+
+</body>
+</html>
