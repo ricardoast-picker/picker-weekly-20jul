@@ -126,8 +126,8 @@
 
     /* ══════════ S3: SESIONES ══════════ */
     #s3 { background: var(--w); }
-    .sess-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-    .sc { background: var(--f); border: 1px solid var(--bdr); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 9px; position: relative; overflow: hidden; }
+    .sess-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; flex: 1; align-content: stretch; }
+    .sc { background: var(--f); border: 1px solid var(--bdr); border-radius: 12px; padding: 20px 20px; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
     .sc::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
     .sc.si::before  { background: #94a3b8; }
     .sc.sd::before  { background: var(--pur); }
@@ -396,9 +396,9 @@
         <span class="sc-name">Tacos el Compayito</span>
         <span class="sc-date-big">×2</span>
       </div>
-      <div class="sc-meta"><span class="sc-flag">🇲🇽</span><span class="badge b-intro">Intro Meeting</span></div>
-      <div class="sc-tk">Intro call por teléfono + segunda sesión esta semana.</div>
-      <div class="sc-nx">Siguiente paso: demo</div>
+      <div class="sc-meta"><span class="sc-flag">🇲🇽</span><span class="badge b-won">Starter</span></div>
+      <div class="sc-tk">Intro call por teléfono + segunda sesión esta semana · avanza como Starter.</div>
+      <div class="sc-nx won">Onboarding como Starter</div>
     </div>
 
     <div class="sc sdc">
